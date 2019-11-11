@@ -97,7 +97,7 @@ The following is a representation of how the data will look on a trading
  platform or website.  Note that the first row of data is excluded, as a
   Simple Moving Average of 2 will not provide a value for only one data point.  
 
-![exampleGraph](exampleGraph.png)
+![exampleGraph](images/exampleGraph.png)
 
 
 
@@ -121,7 +121,7 @@ MetaTrader4 is a trading platform that works in conjunction with many major
    Here is an example of an typical window in MetaTrader 4.  
 
    
-![mt4example](mt4example.png)
+![mt4example](images/mt4example.png)
 
 
 
@@ -242,7 +242,7 @@ As of this posting, the output of my White Box Testing module unfortunately does
  trend-based, as we are looking for patterns in data to determine future
   actions. Consider the chart used in the example above:
   
-  ![mt4example](mt4example.png)
+  ![mt4example](images/mt4example.png)
   
   We can see an enormous red bar on January 3rd.  With no other context, we
    can only assume that either the AUD fell, the JPY rose, or both
@@ -274,7 +274,7 @@ Now we'll start building our program:
 ### Calculating The Formula:
 We will use Pandas to transform our .csv file
 
-```
+```buildoutcfg
 import pandas as pd
 from pandas import DataFrame
 ```
@@ -282,7 +282,7 @@ from pandas import DataFrame
 We'll have a variable called **period** so that we can adjust our n value
  easily.
 
-```
+```buildoutcfg
 period = 5
 ```
 
@@ -295,7 +295,7 @@ df = pd.read_csv('data/AUDNZD1440.csv', usecols=['date', 'close'])
 To figure out the closing price p-n, we'll shift the dataframe by the number
  of periods:
 
-```
+```buildoutcfg
 xDaysAgoPrice = df.close.shift(periods=period)
 ```
 
@@ -310,13 +310,13 @@ xDayAgoList = xDaysAgoPrice.tolist()
 
 We'll create a list for the rate of change values:
 
-```
+```buildoutcfg
 rocList = []
 ```
 
 And put in our formula to calculate Rate of Change:
 
-```
+```buildoutcfg
 for x in closeList:
     for y in xDayAgoList:
         rocList.append(((x-y)/y) * 100)
@@ -324,4 +324,41 @@ for x in closeList:
 
 ### Identifying the ranges:
 
-We want to find out where we 
+We want to find out where our entry points are and capture the range of the
+ position.  
+
+We create two empty lists.
+  
+```buildoutcfg
+shortId, longId = [], []
+for p in range(0, (period + 1)):
+    shortId.append(0), longId.append(0)
+```
+
+We start with an identifier value of 1.  
+We append that identifier to every value where x < 0
+If x > 0, we append 0 and increment the value.
+This makes it so that the next data set has a discrete identifier.
+
+```buildoutcfg
+shortIdentifier = 1
+for x in rocList:
+    if x < 0:
+        shortId.append(shortIdentifier)
+    elif x > 0:
+        shortId.append(0)
+        shortIdentifier += 1
+```
+
+Do the same for Long Identifier:
+
+```buildoutcfg
+longIdentifier = 1
+for y in rocList:
+    if y > 0:
+        longId.append(longIdentifier)
+    elif y < 0:
+        longId.append(0)
+        longIdentifier += 1
+```
+

@@ -2,8 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93e66e65-1167-47e7-a3f8-2376e3f3f93c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/modules/rateOfChange.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AUDNZD1440.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/AUDNZD1440.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audnzd.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/audnzd.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/averageTrueRange.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/averageTrueRange.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chaikinMoneyFlow.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/chaikinMoneyFlow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmfAUDNZD1440.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cmfAUDNZD1440.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataManipulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/depreciated/dataManipulation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataScraping.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/depreciated/dataScraping.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictSplit.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/depreciated/dictSplit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exampleGraph.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/exampleGraph.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/finalAUDNZD1440.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/finalAUDNZD1440.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/depreciated/graphExample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/indicatorShortAndLong.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/depreciated/indicatorShortAndLong.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/indicatorsToCSV.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/depreciated/indicatorsToCSV.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/rateOfChange.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/depreciated/rateOfChange.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movingAvgData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/movingAvgData.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mt4example.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/mt4example.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new" beforeDir="false" afterPath="$PROJECT_DIR$/modules/resultsTracker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newAUDNZD1440.csv" beforeDir="false" afterPath="$PROJECT_DIR$/modules/data/newAUDNZD1440.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ROC.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/ROC.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seabornDistPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/depreciated/seabornDistPlot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simpleGraph.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/simpleGraph.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simpleMovingAverage.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/depreciated/simpleMovingAverage.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,10 +46,14 @@
   <component name="ProjectId" id="1TM4LmAZW426JaFymCHBYLebBCF" />
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/modules/rateOfChange.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sqlquerygps" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\GithubProjects\Indicators\images" />
+      <recent name="C:\GithubProjects\Indicators\modules\data" />
+      <recent name="C:\GithubProjects\Indicators\data" />
+      <recent name="C:\GithubProjects\Indicators\modules\depreciated" />
       <recent name="C:\GithubProjects\Indicators\modules" />
     </key>
   </component>
@@ -43,7 +69,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.resultsTracker">
+    <configuration name="averageTrueRange" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Indicators" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\grego\.virtualenvs\DoubleHeaderFF-pZCBb9kM\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/modules" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/averageTrueRange.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="rateOfChange" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Indicators" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -56,7 +103,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/rateOfChange.py" />
+      <option name="SCRIPT_NAME" value="C:\GithubProjects\Indicators\modules\depreciated\rateOfChange.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -65,6 +112,54 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="rateOfChange" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Indicators" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\grego\.virtualenvs\DoubleHeaderFF-pZCBb9kM\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/modules" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\GithubProjects\Indicators\modules\rateOfChange.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="resultsTracker" type="PythonConfigurationType" factoryName="Python">
+      <module name="Indicators" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\grego\.virtualenvs\DoubleHeaderFF-pZCBb9kM\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/modules" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/resultsTracker.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.rateOfChange" />
+      <item itemvalue="Python.averageTrueRange" />
+      <item itemvalue="Python.rateOfChange2" />
+      <item itemvalue="Python.resultsTracker" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
