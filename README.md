@@ -34,7 +34,7 @@ Conversely, if I sell the USD/JPY pairing, I am buying the Japanese Yen
   
 ![alt text](images/SELLUSDJPY.png)
 
-Currency is traded in what is called **lots**.  A lot references the number
+Currency is traded in **lots**.  A lot references the number
 of currency units you are using to buy and sell currency pairs. The standard
 size for a lot is 100,000 units of currency.  So as an example, if my
 account was funded in US Dollars, and I wanted to buy one lot of a US Dollar
@@ -63,7 +63,7 @@ indicator. This calculates the average of values over a given time period
 of 5, or SMA(5), gives us the average of prices over the last 5 days.
 An SMA(30)does the same over a 30 day period.
 
-![alt text](images/smaExample2.png)
+![alt text](images/smaexample2.png)
 
 <H6>The daily chart of AUD/NZD with a Simple Moving Average of 5 (in orange) 
 and 30 (in blue) applied to the closing price.  A smaller value for SMA binds 
