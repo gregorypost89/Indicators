@@ -10,7 +10,7 @@ NOTE: This project has been repurposed from the repository *ForexModules*. It is
 ### Section 2 - Trading Strategy
 #### Part 2a - The Average True Range 
 
-### Section 1 - Introduction
+## Section 1 - Introduction
 
 This is a collection of various modules that I use for procuring data relevant 
 to the foreign exchange market, also known as Forex. 
@@ -60,14 +60,38 @@ The Simple Moving Average is an example of a very basic and effective
 indicator. This calculates the average of values over a given time period
 , and this time period can be customized. For example a simple moving average
 of 5, or SMA(5), gives us the average of prices over the last 5 days.
-An SMA(14)does the same over a 14 day period.
-     
+An SMA(30)does the same over a 30 day period.
+
+![alt text](images/smaExample.png)
+<H6>The daily chart of AUD/NZD with a Simple Moving Average of 5 (in orange) 
+and 30 (in blue) applied to the closing price.  A smaller value for SMA binds 
+closer to the points, and a larger value shows the overall trend.</H6>
+
 In the next section, we will introduce the Average True Range, which is an
 indicator I use to determine my entry size when making a trade.  We will
-then explore an indicator called the Rate of Change to show an example of
-how we use our indicators to enter trades.
+then explore an indicator called the Rate of Change to use as an example of
+how we enter trades.
    
-### Section 2a - 
+### Part 2a - The Average True Range
+
+One very basic principle that every trader should use, but many don't use, is
+where to **take profit** and **realize loss**.  When we trade, we set the
+maximum amount of loss we are willing to endure and exit that trade with no
+exceptions. We also want to set a point where we can take profit on
+the trade.  
+
+The Average True Range, or ATR, is an excellent way of determining where
+ these limits lie. 
+  
+ The True Range returns whatever is the maximum of these three figures:
+ 
+ - Current Day High - Current Day Low
+ - Current Day High - Previous Day Close
+ - Previous Day Close - Today's Low
+   
+We can stylistically express these like so:
+
+ 
 
 #### Part 1a - Backtesting
 
