@@ -139,7 +139,7 @@ Import Pandas, and read in our data.  For testing, I use the Oanda platform's
  data center to obtain csv files with relevant information.  If using this
   module, be sure to adjust as necessary to meet your needs. 
 
-![alt text](images/atrPandas.png)
+![alt text](images/atrpandas.png)
 
 Calculate the max values by assigning each of them into data frames:
 
