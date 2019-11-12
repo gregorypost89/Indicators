@@ -8,8 +8,9 @@ NOTE: This project has been repurposed from the repository *ForexModules*. It is
 
 ### Section 1 - Introduction
 ### Section 2 - Trading Strategy
-#### Part 2a - The Average True Range 
-
+### Section 3 - The Average True Range 
+#### Part a - Overview
+#### Part b - Code Walkthrough 
 ## Section 1 - Introduction
 
 This is a collection of various modules that I use for procuring data relevant 
@@ -62,7 +63,8 @@ indicator. This calculates the average of values over a given time period
 of 5, or SMA(5), gives us the average of prices over the last 5 days.
 An SMA(30)does the same over a 30 day period.
 
-![alt text](images/smaExample.png)
+![alt text](images/smaExample2.png)
+
 <H6>The daily chart of AUD/NZD with a Simple Moving Average of 5 (in orange) 
 and 30 (in blue) applied to the closing price.  A smaller value for SMA binds 
 closer to the points, and a larger value shows the overall trend.</H6>
@@ -72,7 +74,9 @@ indicator I use to determine my entry size when making a trade.  We will
 then explore an indicator called the Rate of Change to use as an example of
 how we enter trades.
    
-### Part 2a - The Average True Range
+### Section 3 - The Average True Range
+
+#### Part a - Overview
 
 One very basic principle that every trader should use, but many don't use, is
 where to **take profit** and **realize loss**.  When we trade, we set the
@@ -91,14 +95,83 @@ The Average True Range, or ATR, is an excellent way of determining where
    
 We can stylistically express these like so:
 
+![alt text](images/trueRange.png)
+
+The **Average** True Range simply takes the average of these calculated True
+ Ranges for a given time period.
  
+![alt text](images/averageTrueRange.png)
+
+So why are we using the ATR?  
+
+The ATR effectively encapsulates the magnitude of price movement within a
+given period.  If we measure just the close between two days, we may not see
+where price really went.  Think of a stock that starts the day at $100, and
+closes at $101.  It may have gone up all the way to $110, but since we
+never measured that high, we didn't incorporate that movement into our
+overall trading strategy.  Because we capture these ranges over a given time
+period, and average them to smooth out any possible outliers, we get a good
+view of **how far** price is likely to move.
+
+When we make a trade, we will use the value of the ATR to determine where to
+put our stop loss and take profit targets.  Lets say I want to put my stop
+loss and take profit targets at *1 x ATR*. If I enter a trade **long** on AUD/NZD at 10,766 and my ATR value is 56, I would set my stop loss at 10,710 and my
+take profit at 10,822.
+
+The multiplier for ATR can be adjusted as indicators are tested.  If our
+trades are getting stopped out too soon, where our trade went to 10,766 but
+went up past 10,822, we may want to adjust our stop loss to let the trade
+breathe.  Of course, adjustments need to be made to our risk tolerance
+portfolio whenever we decide to change these parameters.
+ 
+When we start backtesting our data, our ATR parameters will be important.  We
+want to determine what constitutes a winning trade and losing trade, and
+this all depends on where we get stopped out or make profit.  
+
+#### Part b - Code Walkthrough
+
+The code for this file can be found in modules/averageTrueRange.py
+
+We will use the Pandas library for most of the modules in this
+ repository.
+ 
+Import Pandas, and read in our data.  For testing, I use the Oanda platform's
+ data center to obtain csv files with relevant information.  If using this
+  module, be sure to adjust as necessary to meet your needs. 
+
+![alt text](images/atrPandas.png)
+
+Calculate the max values by assigning each of them into data frames:
+
+![alt text](images/trueRange.png)
+
+![alt text](images/atrcalculations.png)
+
+and finding the max for each:
+
+![alt text](images/atrtruerange.png)
+
+We use .mean on this new data frame to find the Average True range, and
+pass the .rolling method in pandas to adjust our period.
+
+![alt text](images/atrfinalcalc.png)
+
+Before exporting, I included a data frame for 'pipgain' that calculates the
+daily pip difference to export with the ATR data frame.  This is useful when
+calculating for total gain and loss, and inclusion is optional.
+
+![alt text](images/pipgain.png)
+
+The full code is as follows:
+
+![alt text](images/atrfullcode.png)
 
 #### Part 1a - Backtesting
 
 Backtesting is where I analyze the history of multiple different currency
- pairs over time.  My approach relies heavily on the use of 
- **indicators**, so determining the efficacy and appropriate applications of
-  these indicators via backtesting is essential to success in this system.
+pairs over time.  My approach relies heavily on the use of 
+indicators, so determining the efficacy and appropriate applications of
+these indicators via backtesting is essential to success in this system.
   
 # Measuring data in MetaTrader 4
   
@@ -182,7 +255,7 @@ I decided that a mix of the two was the best approach, as I needed to collect
  
  - The first method
   resulted in module **dataScraping.py** and is located within this repository
-  .  
+  (modules/autogui/dataScraping.py)  
   
   - The second method
   requires multiple different modules, as each indicator has different
