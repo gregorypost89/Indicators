@@ -1,105 +1,73 @@
 # Forex Data Modules
 
+NOTE: This project has been repurposed from the repository *ForexModules*. It is
+ currently under construction and certain sections may be unfinished.  This
+  README will be updated for clarity as modules are posted and updated.
+  
 ## Index:
 
 ### Section 1 - Introduction
-#### Part 1a - Backtesting
+### Section 2 - Trading Strategy
+#### Part 2a - The Average True Range 
 
 ### Section 1 - Introduction
 
 This is a collection of various modules that I use for procuring data relevant 
-to the foreign exchange market, commonly referred to as Forex. 
+to the foreign exchange market, also known as Forex. 
 
-Currencies are traded in pairs. For
-example the US Dollar against the Japanese Yen would be represented as 
-USD/JPY. 
+Unlike stocks and futures, Forex is traded in pairs.  We buy one
+currency against another currency.  For example, USD/JPY means that we are
+trading the US Dollar and Japanese Yen pairing.
 
-Currency pairs are traded in lots, in which you can enter either a short or
-long position.  Using USD/JPY as our example, if I wanted to enter a trade
-on the premise that USD would appreciate in value relative to JPY, I would
-go **long**. Conversely, I would go **short** if the opposite were true.
-   
-As of right now, lot size is not relevant to any posted modules.  This may be
- a consideration for future projects as it relates to money management and
-  risk profile situations, but the primary focus will be on **backtesting**
-  
-  All of my backtesting and results are based on the **daily** time frame.
-  All definitions will be referenced as such.
-  
+![alt text](images/USDJPY.png)
 
+We can either **buy** or **sell** this pairing.  If I buy the USD/JPY, I am
+ buying the US Dollar *against* the Japanese Yen.  I am betting that the US
+  Dollar will appreciate in price relative to the Japanese Yen.  
+
+![alt text](images/BUYUSDJPY.png)
+
+Conversely, if I sell the USD/JPY pairing, I am buying the Japanese Yen
+ against the US Dollar.  I am betting that the Japanese Yen will appreciate
+  in price relative to the US Dollar instead.
   
-## What are indicators?
+![alt text](images/SELLUSDJPY.png)
+
+Currency is traded in what is called **lots**.  A lot references the number
+of currency units you are using to buy and sell currency pairs. The standard
+size for a lot is 100,000 units of currency.  So as an example, if my
+account was funded in US Dollars, and I wanted to buy one lot of a US Dollar
+currency pair, I would need $100,000 to do so.
+
+We can also trade in smaller lot sizes.  These are sizes that are
+ traditionally available through most brokers:
  
-Indicators are essentially graphs and statistics providing
-  some result(s) when measured against data.  An easy way to think about this
-   is an average of data points, measured and graphed over time.
+ ![alt text](images/lotTable.png)
+  
+Lot size won't impact how we develop our modules, but it may be used
+ as part of risk tolerance and overall trading strategy implementations in the
+  future.
+
+  
+# Section 2: Trading Strategy
+
+The method I use to trade involves the use of **indicators**
+ 
+Indicators are tools such graphs and statistics that gives us results we can
+ use to make trading decisions.
 
 The Simple Moving Average is an example of a very basic and effective
- indicator. This calculates the average of values over a given time period
- , and this time period can be customized.  We can utilize a SMA(5), which
-  gives us the average of prices over the last 5 days, or a SMA(14) which
-   does the same over a 14 day period.
-   
-   It is also important to keep in mind that days refer to market days, not
-    calendar days.  As Forex markets are open Monday-Friday, a 5 day period
-     is commonly used to represent 1 week of data.
+indicator. This calculates the average of values over a given time period
+, and this time period can be customized. For example a simple moving average
+of 5, or SMA(5), gives us the average of prices over the last 5 days.
+An SMA(14)does the same over a 14 day period.
      
-Let's go to an example. I'll use 10 integers in a close range to represent
- price movement over a 10 day period
-
-```
-import pandas as pd
-import random
-import plotly.graph_objects as go
-
-data = {'value': [10, 11, 11, 12, 18, 16, 14, 10, 11, 13]}
-
-# Create dataframe
-df = pd.DataFrame(data)
-```
-
-| date | value |
-|------|-------|
-| 0    | 10    |
-| 1    | 11    |
-| 2    | 11    |
-| 3    | 12    |
-| 4    | 18    |
-| 5    | 16    |
-| 6    | 14    |
-| 7    | 10    |
-| 8    | 11    |
-| 9    | 13    |
-
-I'll use a Simple Moving Average with a period of 2 for this data.
-
-```
-# Calculate the moving average, where x in window=x is the number of
-# periods calculated
-
-df.rolling(window=2).mean()
-```
-
-| date | value | sma2 |
-|------|-------|------|
-| 0    | 10    | nan  |
-| 1    | 11    | 10.5 |
-| 2    | 11    | 11   |
-| 3    | 12    | 11.5 |
-| 4    | 18    | 15   |
-| 5    | 16    | 17   |
-| 6    | 14    | 15   |
-| 7    | 10    | 12   |
-| 8    | 11    | 10.5 |
-| 9    | 13    | 12   |
-
-The following is a representation of how the data will look on a trading
- platform or website.  Note that the first row of data is excluded, as a
-  Simple Moving Average of 2 will not provide a value for only one data point.  
-
-![exampleGraph](images/exampleGraph.png)
-
-
+In the next section, we will introduce the Average True Range, which is an
+indicator I use to determine my entry size when making a trade.  We will
+then explore an indicator called the Rate of Change to show an example of
+how we use our indicators to enter trades.
+   
+### Section 2a - 
 
 #### Part 1a - Backtesting
 
