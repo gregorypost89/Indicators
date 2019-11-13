@@ -8,9 +8,24 @@ NOTE: This project has been repurposed from the repository *ForexModules*. It is
 
 ### Section 1 - Introduction
 ### Section 2 - Trading Strategy
-### Section 3 - The Average True Range 
+### Section 3 - Backtesting
+#### Part a - Measuring data in MetaTrader 4
+#### Part b - The Data Window
+#### Part c - Collecting the data 
+### Section 4 - The Average True Range 
 #### Part a - Overview
 #### Part b - Code Walkthrough 
+### Section 5 - The Rate Of Change Indicator
+#### Part a - Overview
+#### Part b - Code Walkthrough
+#### Part c - Capturing the Ranges
+### Section 6 - Parsing the IDs
+
+### Appendix 
+#### Upcoming Plans
+
+---
+
 ## Section 1 - Introduction
 
 This is a collection of various modules that I use for procuring data relevant 
@@ -49,8 +64,9 @@ Lot size won't impact how we develop our modules, but it may be used
  as part of risk tolerance and overall trading strategy implementations in the
   future.
 
+---
   
-# Section 2: Trading Strategy
+## Section 2: Trading Strategy
 
 The method I use to trade involves the use of **indicators**
  
@@ -69,12 +85,121 @@ An SMA(30)does the same over a 30 day period.
 and 30 (in blue) applied to the closing price.  A smaller value for SMA binds 
 closer to the points, and a larger value shows the overall trend.</H6>
 
+---
+
+## Section 3 - Backtesting
+
+Backtesting is where I analyze the history of multiple different currency
+pairs over time.  My approach relies heavily on the use of 
+indicators, so determining the efficacy and appropriate applications of
+these indicators via backtesting is essential to success in this system.
+  
+### Part a - Measuring data in MetaTrader 4
+
+MetaTrader4 is a trading platform that works in conjunction with many major
+trading platforms, including OANDA and Forex.com, two of the only brokers
+available to forex traders in the United States.  I am using OANDA's
+MetaTrader4 platform for my backtesting and extracting the data from there
+for indicator analysis. 
+    
+Here is an example of an typical window in MetaTrader 4.  
+   
+![mt4example](images/mt4example.png)
+
+---
+
+### Part b - The Data Window 
+
+This is the main window where I extract my information.  It contains the
+boilerplate information: Date, Open, High, Low, Close, and Volume.
+
+- The Open is the level where price was at the beginning of the day.
+- The High is the highest that price has reached that day.
+- The Low is the lowest that price has reached that day.
+- The Close is the level where price was at the end of the day
+- The Volume represents total relative trading activity that day
+     
+We can also see that we have SMA(5), SMA(14) and EMA(14) listed.  This is
+our Simple Moving Average 5 and Simple Moving Average 14, and
+Exponential Moving Average 14.  This shows us that we can not only
+measure different time frames with the same indicator, but also
+include different indicators over similar time frames to measure
+their individual effectiveness.
+         
+#### The Navigator Window  
+
+This contains various indicators, both pre-installed and external, used
+for backtesting.  Double-clicking on these icons displays a window in
+which we can customize various settings, including the period measured, 
+shift, line style and line color of graph.
+      
+#### The Chart
+
+This visualizes our currency pair and indicator data represented in
+graphical format. Each individual bar represents a day, where the high
+and low points represent the High and Low respectively, the left tick
+represents the Open, and the right tick represents the Close. Green
+bars are days where the close was greater than the open, and red bars
+are days where the open was greater than the close.
+
+---
+         
+### Part c - Collecting the data
+ 
+A major challenge I encountered was not being able to retrieve indicator data
+in an exportable format. The History Center provides our basic boilerplate
+information, but doesn't seem to include options for including and
+calculating indicator data.  
+
+Even if we are able to get this information, we want to compare different
+values for periods to see which is more effective.  For example, if I want to
+compare a range of 60 Exponential Moving Average periods , I would have to
+put 60 indicators on the chart.  This is obviously very cumbersome, and
+writing a program to iterate over this in a loop should be much more efficient.
+   
+There are two ways I decided to approach this, the first via Black Box
+Testing and the second through White Box Testing.  These methods
+respectively are as follows:
+   
+1. Create a module using PyAutoGUI to cycle through each bar, copy the
+data and paste it into a blank worksheet.  This is simpler and doesn't
+require excessive coding, but is very resource intensive, unintuitive
+, and does not allow for interaction at any time during the process
+unless hard-stopped with a fail safe.
+      
+2. Analyze individual indicators to determine their code structure, calculate
+their values (via matplotlib, pandas, etc), and append those values back
+to some columnar data store.  This is much more tidy and customizable
+, and there are much less steps involved with transposing data in Excel
+and creating various csv files.  However it requires a greater degree
+of code, fundamental knowledge of the model, and understanding of the
+MQL5 language (similar to C++) that these modules are written in.       
+   
+Method #1 works better for initially testing indicators.  For example, if a
+new indicator is released, it may be best to gather some data to gauge its
+effectiveness.  If it is something I can utilize, I can then develop the
+code based on the indicator for further testing.  
+ 
+- The first method resulted in module **dataScraping.py** and is located
+within this repository (modules/autogui/dataScraping.py)  
+  
+- The second method requires multiple different modules, as each indicator has
+different methods of calculation and therefore different code structure.  A 
+schedule of upcoming projects will be posted to this repository in the
+future.  
+     
+**continuationTrade.py**, also located in this repository, is an example
+of this method and is my first attempt at writing a module dependent on
+the indicator's code.
+       
 In the next section, we will introduce the Average True Range, which is an
 indicator I use to determine my entry size when making a trade.  We will
 then explore an indicator called the Rate of Change to use as an example of
 how we enter trades.
-   
-### Section 3 - The Average True Range
+
+---
+
+### Section 4 - The Average True Range
 
 #### Part a - Overview
 
@@ -128,6 +253,8 @@ When we start backtesting our data, our ATR parameters will be important.  We
 want to determine what constitutes a winning trade and losing trade, and
 this all depends on where we get stopped out or make profit.  
 
+---
+
 #### Part b - Code Walkthrough
 
 The code for this file can be found in modules/averageTrueRange.py
@@ -166,116 +293,200 @@ The full code is as follows:
 
 ![alt text](images/atrfullcode.png)
 
-#### Part 1a - Backtesting
+---
 
-Backtesting is where I analyze the history of multiple different currency
-pairs over time.  My approach relies heavily on the use of 
-indicators, so determining the efficacy and appropriate applications of
-these indicators via backtesting is essential to success in this system.
+### Section 5 - The Rate Of Change Indicator
+
+#### Part a - Overview
+
+Now that we have our ATR, we can start importing this indicator along with the
+information we have for our currency pairs into other modules for testing.  
+
+The Rate of Change is not necessarily a great indicator to use for our entry
+signals, but is basic enough to demonstrate an example of the process of
+determining trade entries.
+
+We use the rate of change as a **zero-cross** indicator.  What this means is
+that when the value of the Rate of Change goes from positive to negative, or
+negative to positive (crosses zero), that is our signal to enter the trade.
+
+This is the formula for Rate of Change:
+
+![alt text](images/rateOfChange.png)
+
+Now we'll start building our program:
+
+---
+
+#### Part b - Code Walkthrough
+
+We will use Pandas to transform our .csv file
+
+```
+import pandas as pd
+from pandas import DataFrame
+```
+
+We'll have a variable called **period** so that we can adjust our n value
+ easily.
+While here, we also provide our ATR value.  When collecting the data at the
+ end, we want to remove columns that don't have an ATR value because they are
+  outside of the range. For example, with an ATR of 14, our first 14 columns
+   won't have an ATR because we don't have 14 previous days of information
+   (May end up moving this to the averageTrueRange.py module in the future)
+
+```
+period = 5
+ATR = 14
+```
+
+Read our data in, and only extract the needed columns **date** and **close**:
+
+```
+df = pd.read_csv('data/AUDNZD1440.csv', usecols=['date', 'close'])
+```
+
+To figure out the closing price p-n, we'll create a data frame *pastPrice
+* that shifts the price by the value of period that we defined above
+
+```
+df['pastPrice'] = df['close'].shift(periods=period)
+```
+
+We implement our rate of change formula in a new data frame.
+
+![alt text](images/rateOfChange.png)
+
+```
+df['roc'] = ((df['close'] - df['pastPrice']) / df['pastPrice']) * 100
+```
+
+#### Part c - Capturing the Ranges:
+
+We want to find out where our entry points are and capture the range of the
+position.  
+
+We can find our entry points by seeing where the signal flipped from positive
+to negative.  We will look at where the signal was on the previous day, and
+compare that to the signal on the current day.  If the signal flipped, we
+give it a unique ID number. The next section where the signal flips gets a
+new ID number, so that we can discern where a new signal comes in.
+
+First, lets create our previous day data frame, called 'shift'.
+
+df['shift'] = df['roc'].shift(periods=1)
+
+We'll create two empty lists determining where each value is positive
+
+```
+rocIsPositive = []
+shiftIsPositive = []
+```
+
+And create two loops that will analyze each value of both of our data frames,
+and return a True or False boolean
+
+```
+for x in df['roc']:
+    if x > 0:
+        rocIsPositive.append(True)
+    else:
+        rocIsPositive.append(False)
+
+for y in df['shift']:
+    if y > 0:
+        shiftIsPositive.append(True)
+    else:
+        shiftIsPositive.append(False)
+``` 
+Now we need to create our discrete identifiers.
+
+Lets create a list for our Ids to which our loop can return values.
+
+```
+idList = []
+```
+
+We will start with an identifier value of 1.
+
+```
+identifier = 1
+```
+
+Next, we create our loop.  If the previous day signal is negative and the
+current day is positive, or vice versa, that means our signal crossed zero
+and this is an entry point.  This signals a new entry and therefore we need to
+increment the value to reflect the new section we are analyzing.
+   
+```
+for z in range(0, len(rocIsPositive)):
+    if rocIsPositive[z] != shiftIsPositive[z]:
+        idList.append(identifier)
+        identifier += 1
+    else:
+        idList.append(identifier)
+```
+
+We save the data in the list to a dataframe:
+
+```
+df['id'] = DataFrame(idList)
+```
+
+and drop the index of our ATR value   
+
+```
+df = df.drop(df.index[0:(ATR-1)])
+```
+
+Call our export function:
+
+```
+df.to_csv(r'C:\GithubProjects\Indicators\output\test.csv',
+          columns=['date', 'close', 'ATR', 'pipGain', 'roc', 'id'])
+```       
+          
+And our output looks like this:
+
+![alt text](images/rocOutput.png)
+
+Looking at the data, it does seem that our ID's are one row late, as seen below:
+
+![alt text](images/rocChange.png)
+
+This is a good time to explain how we trade: 
+
+The indicator must cross zero **and close** across zero.  Forex is a 24
+hour market and is traded in sessions.  The close of a candle is really the
+close of the New York Session, which runs from 8AM to 5PM EST. But as soon as
+that New York Session ends, a new candle opens as  the Sydney session begins
+and runs from 5PM EST to 2AM EST, which then goes through the Tokyo and
+London sessions before resuming on New York.
   
-# Measuring data in MetaTrader 4
-  
-## How do we find this data?
-
-MetaTrader4 is a trading platform that works in conjunction with many major
- trading platforms, including OANDA and Forex.com, two of the only brokers
-  available to forex traders in the United States.  I am using OANDA's
-   MetaTrader4 platform for my backtesting and extracting the data from there
-    for indicator analysis. 
-    
-   Here is an example of an typical window in MetaTrader 4.  
-
+Unlike stocks, which have a defined close and open (including premarket and
+aftermarket hourse), Forex is constant through the 5 day week.  If a signal
+crosses 0 and we make a trade on the same day, the signal could still flip
+the other way. 
    
-![mt4example](images/mt4example.png)
+Therefore, we look at the negative or positive attribute of the previous
+day's value, and enter **if and only if** the current day attribute is the
+same.
 
-
-
-- The Data Window: 
-
-    This is the main window where I extract my information.  It contains the
-     boilerplate information: Date, Open, High, Low, Close, and Volume.
-
-     - The Open is the level where price was at the beginning of the day.
-     - The High is the highest that price has reached that day.
-     - The Low is the lowest that price has reached that day.
-     - The Close is the level where price was at the end of the day
-     - The Volume represents total relative trading activity that day
-     
-    We can also see that we have SMA(5), SMA(14) and EMA(14) listed.  This is
-     our Simple Moving Average 5 and Simple Moving Average 14, and
-      Exponential Moving Average 14.  This shows us that we can not only
-       measure different time frames with the same indicator, but also
-        include different indicators over similar time frames to measure
-         their individual effectiveness.
-         
-- The Navigator Window:  
-
-    This contains various indicators, both pre-installed and external, used
-     for backtesting.  Double-clicking on these icons displays a window in
-      which we can customize various settings, including the period measured, 
-      shift, line style and line color of graph.
-      
-- The Chart:
-
-    This visualizes our currency pair and indicator data represented in
-     graphical format. Each individual bar represents a day, where the high
-      and low points represent the High and Low respectively, the left tick
-       represents the Open, and the right tick represents the Close. Green
-        bars are days where the close was greater than the open, and red bars
-         are days where the open was greater than the close.
-         
- ## How do we collect this data?
+For example, if yesterday's ROC value is -2 and today's is -1.5, that is my 
+signal to enter the trade. If today's value attribute is positive, we do not
+enter.
  
-A major challenge I encountered was not being able to retrieve indicator data
- in an exportable format. The History Center provides our basic boilerplate
-  information, but doesn't seem to include options for including and
-   calculating indicator data.  
-   
-   There are two ways I decided to approach this, the first via Black Box
-    Testing and the second through White Box Testing.  These methods
-    respectively are as follows:
-   
-   1. Create a module using PyAutoGUI to cycle through each bar, copy the
-    data and paste it into a blank worksheet.  This is simpler and doesn't
-     require excessive coding, but is very resource intensive, unintuitive
-     , and does not allow for interaction at any time during the process
-      unless hard-stopped with a fail safe.
-      
-   2. Analyze individual indicators to determine their code structure, calculate
-    their values (via matplotlib, pandas, etc), and append those values back
-     to some columnar data store.  This is much more tidy and customizable
-     , and there are much less steps involved with transposing data in Excel
-      and creating various csv files.  However it requires a greater degree
-       of code, fundamental knowledge of the model, and understanding of the
-        MQL5 language (similar to C++) that these modules are written in.
-        
-   
-I decided that a mix of the two was the best approach, as I needed to collect
- some data on which to graph and build future modules. 
+![alt text](images/rocFlip.png)
+
+Our next objective will be finding a method to divide these sections up by
+ their ID number to determine our gain and loss.
  
- - The first method
-  resulted in module **dataScraping.py** and is located within this repository
-  (modules/autogui/dataScraping.py)  
-  
-  - The second method
-  requires multiple different modules, as each indicator has different
-   methods of calculation and therefore different code structure.  A 
-    schedule of upcoming projects will be posted to this repository in the
-     future.  
+### Section 6 - Parsing the IDs
+
+---
      
-     **continuationTrade.py**, also located in this repository, is an example
-      of this method and is my first attempt at writing a module dependent on
-       the indicator's code.
-       
-As of this posting, the output of my White Box Testing module unfortunately does
- not match the output of my indicator results on MetaTrader 4.  
- 
- However, it
-  is clear that a two-pronged approach using both methods is necessary, as I
-   need to compare my white box data against some black box data for accuracy
-   , and see what margin of error (if any) is acceptable.
-     
-## What's next?
+### Appendix 
+#### Upcoming Plans
 
 *Please note: This section contains various projects and ideas that will be
  heavily edited as they are added, completed or removed.  Real-life
@@ -325,105 +536,3 @@ As of this posting, the output of my White Box Testing module unfortunately does
     *Modules should include a calendar of events where appropriate to account
      for outliers and detail the degree of influence and action taken.*
      
-# Using an Entry Indicator
-
-We will use a basic indicator to show an example of the processes we use.
-
-Rate of Change indicator:
-
-![alt text](images/rateOfChange.png)
-
-Now we'll start building our program:
-
-## rateofChange.py 
-### Calculating The Formula:
-We will use Pandas to transform our .csv file
-
-```buildoutcfg
-import pandas as pd
-from pandas import DataFrame
-```
-
-We'll have a variable called **period** so that we can adjust our n value
- easily.
-
-```buildoutcfg
-period = 5
-```
-
-Read our data in, and only extract the needed columns **date** and **close**:
-
-```buildoutcfg
-df = pd.read_csv('data/AUDNZD1440.csv', usecols=['date', 'close'])
-```
-
-To figure out the closing price p-n, we'll shift the dataframe by the number
- of periods:
-
-```buildoutcfg
-xDaysAgoPrice = df.close.shift(periods=period)
-```
-
-We'll convert the dataframes we have to lists.  This is for ease of formula
- calculation.
-
-```buildoutcfg
-dateList = df.date.tolist()
-closeList = df.close.tolist()
-xDayAgoList = xDaysAgoPrice.tolist()
-```
-
-We'll create a list for the rate of change values:
-
-```buildoutcfg
-rocList = []
-```
-
-And put in our formula to calculate Rate of Change:
-
-```buildoutcfg
-for x in closeList:
-    for y in xDayAgoList:
-        rocList.append(((x-y)/y) * 100)
-```
-
-### Identifying the ranges:
-
-We want to find out where our entry points are and capture the range of the
- position.  
-
-We create two empty lists.
-  
-```buildoutcfg
-shortId, longId = [], []
-for p in range(0, (period + 1)):
-    shortId.append(0), longId.append(0)
-```
-
-We start with an identifier value of 1.  
-We append that identifier to every value where x < 0
-If x > 0, we append 0 and increment the value.
-This makes it so that the next data set has a discrete identifier.
-
-```buildoutcfg
-shortIdentifier = 1
-for x in rocList:
-    if x < 0:
-        shortId.append(shortIdentifier)
-    elif x > 0:
-        shortId.append(0)
-        shortIdentifier += 1
-```
-
-Do the same for Long Identifier:
-
-```buildoutcfg
-longIdentifier = 1
-for y in rocList:
-    if y > 0:
-        longId.append(longIdentifier)
-    elif y < 0:
-        longId.append(0)
-        longIdentifier += 1
-```
-
