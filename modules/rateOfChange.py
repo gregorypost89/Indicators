@@ -42,6 +42,7 @@ for z in range(0, len(rocIsPositive)):
         idList.append(identifier)
 
 df['id'] = DataFrame(idList)
+df['rocIsPositive'] = DataFrame(rocIsPositive)
 
 df = df.drop(df.index[0:(ATR-1)])
 
@@ -57,7 +58,8 @@ print(len(shiftIsPositive))
 # df2.to_csv(r'C:\GithubProjects\Indicators\output\ROC.csv')
 
 df.to_csv(r'C:\GithubProjects\Indicators\output\test.csv',
-          columns=['date', 'close', 'ATR', 'pipGain', 'roc', 'id'])
+          columns=['date', 'close', 'ATR', 'pipGain', 'id', 'roc',
+                   'rocIsPositive'])
 #
 #
 # def UseOpenpyxl(file_name):

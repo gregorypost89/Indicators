@@ -19,7 +19,7 @@ NOTE: This project has been repurposed from the repository *ForexModules*. It is
 #### Part a - Overview
 #### Part b - Code Walkthrough
 #### Part c - Capturing the Ranges
-### Section 6 - Parsing the IDs
+### Section 6 - Parsing the IDs (In Progress)
 
 ### Appendix 
 #### Upcoming Plans
@@ -84,6 +84,41 @@ An SMA(30)does the same over a 30 day period.
 <H6>The daily chart of AUD/NZD with a Simple Moving Average of 5 (in orange) 
 and 30 (in blue) applied to the closing price.  A smaller value for SMA binds 
 closer to the points, and a larger value shows the overall trend.</H6>
+
+So what decisions do we make with these indicators?
+
+There are several categories that each of these indicators can fall in, but
+the first indicator we will look at is our **entry indicator**.  At some
+point, we will need to enter a trade, so this is a good place to start. 
+ 
+When we look at the chart above, the SMA(5) details the prevailing longer term
+trend, but is also prone to missing out on smaller movement.  We will look to
+ see where the SMA(5) crosses over, and enter in the direction it is going:
+ 
+![alt text](images/sma5example.png)
+
+So we gained quite a bit, but it would have been nice to capture the bottom
+of that range.  If we had an indicator that got us in there, we would have a
+much larger gain over a much shorter time period.
+  
+![alt text](images/sma5example2.png)
+
+When we test our indicators, we're not looking for indicators that get
+us into trades, we want indicators that get us into trades **well**.  We
+need a place to start, so we'll demonstrate by using a basic indicator
+called the **Rate of Change** indicator.   This isn't a great indicator
+, but gives us something on which we can build our platform. Once we
+build our program to extract the data from this indicator, we can add other
+modules and compare them to our Rate of Change using the same template.
+  
+Once our entry indicator module is in place and established, we can add other
+indicators to our system. For example, we can determine where to exit with
+an **exit indicator**, or perhaps add a **second entry indicator** to make
+sure our entries are successful.  
+
+But first, we need to figure out how to get our data.  We will go over how I
+collect data for this project, and move onto actually building our modules
+for use with our indicators.
 
 ---
 
@@ -302,9 +337,10 @@ The full code is as follows:
 Now that we have our ATR, we can start importing this indicator along with the
 information we have for our currency pairs into other modules for testing.  
 
-The Rate of Change is not necessarily a great indicator to use for our entry
-signals, but is basic enough to demonstrate an example of the process of
-determining trade entries.
+The Rate of Change, as mentioned, is not necessarily a great indicator to
+use for our entry signals, but is basic enough to demonstrate an example of
+the process of determining trade entries and give us a good starting point to
+test our other entry indicators against.
 
 We use the rate of change as a **zero-cross** indicator.  What this means is
 that when the value of the Rate of Change goes from positive to negative, or
@@ -472,7 +508,7 @@ Therefore, we look at the negative or positive attribute of the previous
 day's value, and enter **if and only if** the current day attribute is the
 same.
 
-For example, if yesterday's ROC value is -2 and today's is -1.5, that is my 
+For example, if yesterday's ROC value is -1.2 and today's is -2.1, that is my 
 signal to enter the trade. If today's value attribute is positive, we do not
 enter.
  
@@ -481,7 +517,13 @@ enter.
 Our next objective will be finding a method to divide these sections up by
  their ID number to determine our gain and loss.
  
-### Section 6 - Parsing the IDs
+---
+ 
+### Section 6 - Parsing the IDs (In Progress)
+
+Entry - 1 x ATR 
+Exit - 1 x ATR
+
 
 ---
      
