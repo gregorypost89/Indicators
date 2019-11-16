@@ -26,6 +26,7 @@ NOTE: This project has been repurposed from the repository *ForexModules*. It is
 
 ### Appendix 
 #### Upcoming Plans
+#### Citations
 
 ---
 
@@ -527,6 +528,8 @@ Our next objective will be finding a method to divide these sections up by
  
 ### Section 6 - Parsing the IDs (In Progress)
 
+#### Part a - Overview
+
 Parsing the IDs can be a little tricky.  Having files in a .csv format keeps
 it all on one sheet, and tends to be more flexible as comma separation is a
 very simple method of separating our values from each other.  
@@ -543,8 +546,140 @@ will include a method for saving .csv files and a method for .xlsx files
 implementations, the front-end interface will provide an option to export
 in either extension and our program will run the appropriate code.
     
-    
+#### Part b - Writing to .xlsx Code Walkthrough
 
+We will start by importing the pandas and ExcelWriter modules
+
+![alt text](images/importsXlsx.png)
+
+We're going to include a section where we can put the maximum amount of
+ entries (IDs) we want our program to return, and paths for our input and
+  output.
+ 
+![alt text](images/definitionsXlsx.png)
+
+Next, we read in our input csv with the necessary columns
+
+![alt text](images/readCsv.png)
+
+We'll need to calculate the max ID value in the 'id' dataframe.  We do this
+using the .loc method on the length of the dataframe. 
+
+![alt text](images/maxId.png)
+
+We want to be careful because the value we put for maxEntries may exceed the
+actual maxID value.  For example, if our database may only have 25 entries, and
+we want to return 30 values, we'll get an error.  So we want to write a
+function that makes our maxEntries value equal our maxID value if
+maxEntries is less than maxId.
+
+![alt text](images/ifMaxEntries.png)
+   
+We're going to loop through the range of our entries.
+First, lets create a list for the dataframes we will return from our loop
+ 
+![alt text](images/dataList.png)
+
+Our loop will cover the range of the latest 'x' amount of entries that we put
+for our maxID value.  
+
+As an example, lets say our dataframe has 200 IDs, and
+we limit our maxEntries to 30.
+
+Because our database lists values in date ascending order (the furthest
+away date to the most recent date), our largest ID value will be the most
+recent range of dates, and the smallest ID will be the furthest range of
+dates.  So we want to return the IDs from 170-200, because these are the 30
+most recent ranges of dates, and put this in the dataList we created. 
+
+![alt text](images/forLoopRange.png)
+
+Now that those 30 dataframes are saved in a list, we need to iterate over
+each item in the list and return it to a separate sheet in our xlsx file.
+
+[Andy Hayden on Stack Overflow](https://stackoverflow.com/a/14225838) has
+provided a solution for a loop that works perfectly for our purposes
+ 
+First, we'll define a function called save_xls that takes in two parameters
+: the list of dataframes, and the path for the output.  
+
+![alt text](images/defSave.png)
+
+We're going to use a with statement next, so that we can streamline our code
+by not repeatedly having to close and open each new spreadsheet.
+
+The **.to_excel** method also allows us to write the provided dataframe
+object into a sheet.  However, if we want to write more than one sheet, we
+will need to provide a specific ExcelWriter object. 
+This is where the **ExcelWriter** that we imported comes into play.  
+Excelwriter is a **class** in Pandas that enables us to write DataFrame
+objects into sheets, and is what we will need to pass in to our .to_excel
+ method later to write the multiple sheets we need. 
+     
+For now we're going to call ExcelWriter here and pass in the output path
+ variable (xls_path), and use it as our **writer**
+  
+![alt text](images/withExcelWriter.png)
+    
+Next, we're going to use a **for** loop in which we will call the **enumerate
+** method of our list of dataframes.  
+
+Enumerate takes all the values in a list and applies an index to it.  That
+means for every item we have in the list, that index tells our program to which
+sheet that data gets applied.
+
+We're going to pass two variables into this enumerate function in our for loop:
+
+1. a variable for the number of our index **n**
+2. a variable for the dataframe in our list **dfl** 
+
+![alt text](images/enumerate.png)
+
+The enumerate method, by default, starts at index 0 and works our way up
+.  Since our range is going to be 1 to whatever max value we provided, its
+ better to start at index 1 for ease of reference.  We can pass the value 1
+  as our second argument into enumerate to tell it to start at index 1.
+  
+![alt text](images/enumerate1.png)
+          
+Each of these dataframes will need to go into a separate sheet.  We need to
+ pass in that **ExcelWriter** to save our multiple dataframes.  Since this
+  was provided as our writer, we can pass "writer" in here
+
+![alt text](images/toExcelWriter.png)
+
+We also need to tell the program what the sheets will be named.  We'd like to
+make it read "sheet" plus the index of our entry (sheet1, sheet2, etc), so we
+'ll provide **sheet%s** 
+
+%s is a **string formatting syntax**, and basically acts as a placeholder.
+Where we provide this %s, we add a % symbol after it with the value that
+replaces the %s placeholder.
+
+This is where we put the index number, our **n** variable
+
+![alt text](images/sheets.png)
+        
+If we were to save this and return the output now, we'll find that there are
+a lot of blank rows where the values from previous periods used to be.  We
+would like to keep our data on the top row, and to do this we'll call the
+ **.dropna** method, and only delete rows(axis=0) that are completely empty
+  (how='all')
+
+![alt text](images/dropna.png)
+        
+Now we can call .save on our writer to save our output.
+       
+![alt text](images/writerSave.png)
+
+We finally call this save_xls function at the end to extract our data and
+save it to our desired output path.
+ 
+![alt text](images/saveXls.png)
+
+The full code is as follows:
+
+![alt text](images/fullXlsxCode.png)
 
 ---
      
@@ -599,3 +734,8 @@ in either extension and our program will run the appropriate code.
     *Modules should include a calendar of events where appropriate to account
      for outliers and detail the degree of influence and action taken.*
      
+#### Citations
+
+Andy Hayden on Stack Overflow:
+https://stackoverflow.com/a/14225838 
+for the code to save multiple sheets to an xlsx file.
