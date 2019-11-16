@@ -383,17 +383,13 @@ Read our data in, and only extract the needed columns **date** and **close**:
 To figure out the closing price p-n, we'll create a DataFrame *pastPrice
 * that shifts the price by the value of period that we defined above
 
-```
-df['pastPrice'] = df['close'].shift(periods=period)
-```
+![alt text](images/pastPrice.png)
 
 We implement our rate of change formula in a new DataFrame.
 
 ![alt text](images/rateOfChange.png)
 
-```
-df['roc'] = ((df['close'] - df['pastPrice']) / df['pastPrice']) * 100
-```
+![alt text](images/dfROC.png)
 
 #### Part c - Capturing the Ranges:
 
@@ -408,77 +404,45 @@ new ID number, so that we can discern where a new signal comes in.
 
 First, lets create our previous day DataFrame, called 'shift'.
 
-df['shift'] = df['roc'].shift(periods=1)
+![alt text](images/dfShift.png)
 
 We'll create two empty lists determining where each value is positive
 
-```
-rocIsPositive = []
-shiftIsPositive = []
-```
+![alt text](images/twoLists.png)
 
 And create two loops that will analyze each value of both of our DataFrames,
 and return a True or False boolean
 
-```
-for x in df['roc']:
-    if x > 0:
-        rocIsPositive.append(True)
-    else:
-        rocIsPositive.append(False)
+![alt text](images/twoLoops.png)
 
-for y in df['shift']:
-    if y > 0:
-        shiftIsPositive.append(True)
-    else:
-        shiftIsPositive.append(False)
-``` 
 Now we need to create our discrete identifiers.
 
 Lets create a list for our Ids to which our loop can return values.
 
-```
-idList = []
-```
+![alt text](images/idList.png)
 
-We will start with an identifier value of 1.
+Now we'll create the function for our loop.  
 
-```
-identifier = 1
-```
+First, we'll define an **identifier** of 1 before creating the **for** loop.
 
-Next, we create our loop.  If the previous day signal is negative and the
-current day is positive, or vice versa, that means our signal crossed zero
-and this is an entry point.  This signals a new entry and therefore we need to
-increment the value to reflect the new section we are analyzing.
+If the previous day signal is negative and the current day is positive, or
+ vice versa, that means our signal crossed zero and this is an entry point
+ .  This signals a new entry and therefore we need to increment the value to
+  reflect the new section we are analyzing.
    
-```
-for z in range(0, len(rocIsPositive)):
-    if rocIsPositive[z] != shiftIsPositive[z]:
-        idList.append(identifier)
-        identifier += 1
-    else:
-        idList.append(identifier)
-```
+![alt text](images/identifierAndLoop.png)
 
 We save the data in the list to a DataFrame:
 
-```
-df['id'] = DataFrame(idList)
-```
+![alt text](images/dfID.png)
 
 and drop the index of our ATR value   
 
-```
-df = df.drop(df.index[0:(ATR-1)])
-```
+![alt text](images/dfDrop.png)
 
 Call our export function:
 
-```
-df.to_csv(r'C:\GithubProjects\Indicators\output\test.csv',
-          columns=['date', 'close', 'ATR', 'pipGain', 'roc', 'id'])
-```       
+![alt text](images/rocToCsv.png)
           
 And our output looks like this:
 
