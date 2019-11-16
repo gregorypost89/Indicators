@@ -307,7 +307,7 @@ Import Pandas, and read in our data.  For testing, I use the Oanda platform's
 
 ![alt text](images/atrpandas.png)
 
-Calculate the max values by assigning each of them into data frames:
+Calculate the max values by assigning each of them into DataFrames:
 
 ![alt text](images/trueRange.png)
 
@@ -317,13 +317,13 @@ and finding the max for each:
 
 ![alt text](images/atrtruerange.png)
 
-We use .mean on this new data frame to find the Average True range, and
+We use .mean on this new DataFrame to find the Average True range, and
 pass the .rolling method in pandas to adjust our period.
 
 ![alt text](images/atrfinalcalc.png)
 
-Before exporting, I included a data frame for 'pipgain' that calculates the
-daily pip difference to export with the ATR data frame.  This is useful when
+Before exporting, I included a DataFrame for 'pipgain' that calculates the
+daily pip difference to export with the ATR DataFrame.  This is useful when
 calculating for total gain and loss, and inclusion is optional.
 
 ![alt text](images/pipgain.png)
@@ -362,10 +362,7 @@ Let's start building our program.
 
 We will use Pandas to transform our .csv file
 
-```
-import pandas as pd
-from pandas import DataFrame
-```
+![alt text](images/rocImport.png)
 
 We'll have a variable called **period** so that we can adjust our n value
  easily.
@@ -375,13 +372,9 @@ end, we want to remove columns that don't have an ATR value because they are
 outside of the range. For example, with an ATR of 14, our first 14 columns
 won't have an ATR because we don't have 14 previous days of information
 
-(NOTE: Possible incorporation into averageTrueRange.py module in future
- releases)
+#####This section may be incorporated into averageTrueRange.py module in future releases for flexibility with other indicator modules)
 
-```
-period = 5
-ATR = 14
-```
+![alt text](images/periodATR.png)
 
 Read our data in, and only extract the needed columns **date** and **close**:
 
@@ -389,14 +382,14 @@ Read our data in, and only extract the needed columns **date** and **close**:
 df = pd.read_csv('data/AUDNZD1440.csv', usecols=['date', 'close'])
 ```
 
-To figure out the closing price p-n, we'll create a data frame *pastPrice
+To figure out the closing price p-n, we'll create a DataFrame *pastPrice
 * that shifts the price by the value of period that we defined above
 
 ```
 df['pastPrice'] = df['close'].shift(periods=period)
 ```
 
-We implement our rate of change formula in a new data frame.
+We implement our rate of change formula in a new DataFrame.
 
 ![alt text](images/rateOfChange.png)
 
@@ -415,7 +408,7 @@ compare that to the signal on the current day.  If the signal flipped, we
 give it a unique ID number. The next section where the signal flips gets a
 new ID number, so that we can discern where a new signal comes in.
 
-First, lets create our previous day data frame, called 'shift'.
+First, lets create our previous day DataFrame, called 'shift'.
 
 df['shift'] = df['roc'].shift(periods=1)
 
@@ -426,7 +419,7 @@ rocIsPositive = []
 shiftIsPositive = []
 ```
 
-And create two loops that will analyze each value of both of our data frames,
+And create two loops that will analyze each value of both of our DataFrames,
 and return a True or False boolean
 
 ```
@@ -470,7 +463,7 @@ for z in range(0, len(rocIsPositive)):
         idList.append(identifier)
 ```
 
-We save the data in the list to a dataframe:
+We save the data in the list to a DataFrame:
 
 ```
 df['id'] = DataFrame(idList)
@@ -562,28 +555,31 @@ Next, we read in our input csv with the necessary columns
 
 ![alt text](images/readCsv.png)
 
-We'll need to calculate the max ID value in the 'id' dataframe.  We do this
-using the .loc method on the length of the dataframe. 
+We'll need to calculate the max ID value in the 'id' DataFrame.  We do this
+using the .loc method on the length of the DataFrame. 
 
 ![alt text](images/maxId.png)
 
 We want to be careful because the value we put for maxEntries may exceed the
-actual maxID value.  For example, if our database may only have 25 entries, and
-we want to return 30 values, we'll get an error.  So we want to write a
-function that makes our maxEntries value equal our maxID value if
-maxEntries is less than maxId.
+actual maxID value.  For example, if our database may only have 29 entries, and
+we want to return 30 values, we'll get an error because our program is
+ looking for a 30th entry that doesn't exist.
+   
+We want to write a function that makes our maxEntries value equal our maxID value if
+maxEntries is less than maxId.  That way, we just return what we have in our
+ database and prevent our program from crashing.
 
 ![alt text](images/ifMaxEntries.png)
    
 We're going to loop through the range of our entries.
-First, lets create a list for the dataframes we will return from our loop
+First, lets create a list for the DataFrames we will return from our loop
  
 ![alt text](images/dataList.png)
 
 Our loop will cover the range of the latest 'x' amount of entries that we put
 for our maxID value.  
 
-As an example, lets say our dataframe has 200 IDs, and
+As an example, lets say our DataFrame has 200 IDs, and
 we limit our maxEntries to 30.
 
 Because our database lists values in date ascending order (the furthest
@@ -594,21 +590,21 @@ most recent ranges of dates, and put this in the dataList we created.
 
 ![alt text](images/forLoopRange.png)
 
-Now that those 30 dataframes are saved in a list, we need to iterate over
+Now that those 30 DataFrames are saved in a list, we need to iterate over
 each item in the list and return it to a separate sheet in our xlsx file.
 
 [Andy Hayden on Stack Overflow](https://stackoverflow.com/a/14225838) has
 provided a solution for a loop that works perfectly for our purposes
  
 First, we'll define a function called save_xls that takes in two parameters
-: the list of dataframes, and the path for the output.  
+: the list of DataFrames, and the path for the output.  
 
 ![alt text](images/defSave.png)
 
 We're going to use a with statement next, so that we can streamline our code
 by not repeatedly having to close and open each new spreadsheet.
 
-The **.to_excel** method also allows us to write the provided dataframe
+The **.to_excel** method also allows us to write the provided DataFrame
 object into a sheet.  However, if we want to write more than one sheet, we
 will need to provide a specific ExcelWriter object. 
 This is where the **ExcelWriter** that we imported comes into play.  
@@ -622,7 +618,7 @@ For now we're going to call ExcelWriter here and pass in the output path
 ![alt text](images/withExcelWriter.png)
     
 Next, we're going to use a **for** loop in which we will call the **enumerate
-** method of our list of dataframes.  
+** method of our list of DataFrames.  
 
 Enumerate takes all the values in a list and applies an index to it.  That
 means for every item we have in the list, that index tells our program to which
@@ -631,7 +627,7 @@ sheet that data gets applied.
 We're going to pass two variables into this enumerate function in our for loop:
 
 1. a variable for the number of our index **n**
-2. a variable for the dataframe in our list **dfl** 
+2. a variable for the DataFrame in our list **dfl** 
 
 ![alt text](images/enumerate.png)
 
@@ -642,8 +638,8 @@ The enumerate method, by default, starts at index 0 and works our way up
   
 ![alt text](images/enumerate1.png)
           
-Each of these dataframes will need to go into a separate sheet.  We need to
- pass in that **ExcelWriter** to save our multiple dataframes.  Since this
+Each of these DataFrames will need to go into a separate sheet.  We need to
+ pass in that **ExcelWriter** to save our multiple DataFrames.  Since this
   was provided as our writer, we can pass "writer" in here
 
 ![alt text](images/toExcelWriter.png)
