@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93e66e65-1167-47e7-a3f8-2376e3f3f93c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/modules/xlsxTester.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/resultsTrackerToCsv.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/rateOfChange.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/rateOfChange.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/resultsTracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/resultsTracker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/test.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/test2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/test2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scratch.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/scratch.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/rocFlip.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/resultsTracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/resultsTrackerToXlsx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/xlsxTester.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/xlsxTester.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/test4.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/output/test4.xlsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +53,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.xlsxTester">
+  <component name="RunManager" selected="Python.resultsTrackerToXlsx">
     <configuration name="averageTrueRange" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Indicators" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -118,7 +117,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="resultsTracker" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="resultsTrackerToXlsx" type="PythonConfigurationType" factoryName="Python">
       <module name="Indicators" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -130,7 +129,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/resultsTracker.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/resultsTrackerToXlsx.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -163,7 +162,7 @@
     <list>
       <item itemvalue="Python.rateOfChange" />
       <item itemvalue="Python.averageTrueRange" />
-      <item itemvalue="Python.resultsTracker" />
+      <item itemvalue="Python.resultsTrackerToXlsx" />
       <item itemvalue="Python.xlsxTester" />
     </list>
   </component>

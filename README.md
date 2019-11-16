@@ -20,6 +20,9 @@ NOTE: This project has been repurposed from the repository *ForexModules*. It is
 #### Part b - Code Walkthrough
 #### Part c - Capturing the Ranges
 ### Section 6 - Parsing the IDs (In Progress)
+#### Part a - Overview
+#### Part b - Writing to .xlsx Code Walkthrough
+#### Part c - Writing to .csv Code Walkthrough
 
 ### Appendix 
 #### Upcoming Plans
@@ -337,7 +340,7 @@ The full code is as follows:
 Now that we have our ATR, we can start importing this indicator along with the
 information we have for our currency pairs into other modules for testing.  
 
-The Rate of Change, as mentioned, is not necessarily a great indicator to
+The Rate of Change as mentioned before is not necessarily a great indicator to
 use for our entry signals, but is basic enough to demonstrate an example of
 the process of determining trade entries and give us a good starting point to
 test our other entry indicators against.
@@ -350,7 +353,7 @@ This is the formula for Rate of Change:
 
 ![alt text](images/rateOfChange.png)
 
-Now we'll start building our program:
+Let's start building our program.
 
 ---
 
@@ -365,11 +368,14 @@ from pandas import DataFrame
 
 We'll have a variable called **period** so that we can adjust our n value
  easily.
+ 
 While here, we also provide our ATR value.  When collecting the data at the
- end, we want to remove columns that don't have an ATR value because they are
-  outside of the range. For example, with an ATR of 14, our first 14 columns
-   won't have an ATR because we don't have 14 previous days of information
-   (May end up moving this to the averageTrueRange.py module in the future)
+end, we want to remove columns that don't have an ATR value because they are
+outside of the range. For example, with an ATR of 14, our first 14 columns
+won't have an ATR because we don't have 14 previous days of information
+
+(NOTE: Possible incorporation into averageTrueRange.py module in future
+ releases)
 
 ```
 period = 5
@@ -512,7 +518,7 @@ For example, if yesterday's ROC value is -1.2 and today's is -2.1, that is my
 signal to enter the trade. If today's value attribute is positive, we do not
 enter.
  
-![alt text](images/rocFlip.png)
+![alt text](images/rocActions.png)
 
 Our next objective will be finding a method to divide these sections up by
  their ID number to determine our gain and loss.
@@ -521,8 +527,23 @@ Our next objective will be finding a method to divide these sections up by
  
 ### Section 6 - Parsing the IDs (In Progress)
 
-Entry - 1 x ATR 
-Exit - 1 x ATR
+Parsing the IDs can be a little tricky.  Having files in a .csv format keeps
+it all on one sheet, and tends to be more flexible as comma separation is a
+very simple method of separating our values from each other.  
+  
+However, we're going to have quite a bit of information, and the column count
+is going to vastly increase.  Suppose our parser returns 30 separate entry
+instances.  We now have 30 columns labeled 'close', 'ATR', etc. and our
+programs may be confused on which columns to operate.
+   
+Using ExcelWriter in Pandas, we can have the option of saving this file to an
+.xlsx extension.  This separates all instances in separate worksheets.  We
+will include a method for saving .csv files and a method for .xlsx files
+, where the user can simply comment out the section they need, or in later
+implementations, the front-end interface will provide an option to export
+in either extension and our program will run the appropriate code.
+    
+    
 
 
 ---
@@ -531,9 +552,9 @@ Exit - 1 x ATR
 #### Upcoming Plans
 
 *Please note: This section contains various projects and ideas that will be
- heavily edited as they are added, completed or removed.  Real-life
+ changed as they are added, completed or removed.  Real-life
   obligations and technological constraints may affect the timeliness of how
-   these are addressed, and if so will be appended with details.*
+   these are addressed, and if so will be edited with further details.*
    
 - My trading algorithm follows the 
 [No Nonsense Forex approach.](https://nononsenseforex.com/) This incudes six
