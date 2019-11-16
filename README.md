@@ -378,9 +378,7 @@ won't have an ATR because we don't have 14 previous days of information
 
 Read our data in, and only extract the needed columns **date** and **close**:
 
-```
-df = pd.read_csv('data/AUDNZD1440.csv', usecols=['date', 'close'])
-```
+![alt text](images/dfpdread.png)
 
 To figure out the closing price p-n, we'll create a DataFrame *pastPrice
 * that shifts the price by the value of period that we defined above
