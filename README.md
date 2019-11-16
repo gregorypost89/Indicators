@@ -376,6 +376,8 @@ won't have an ATR because we don't have 14 previous days of information
 
 ![alt text](images/periodATR.png)
 
+![alt text](images/periodATR1.png)
+
 Read our data in, and only extract the needed columns **date** and **close**:
 
 ```
