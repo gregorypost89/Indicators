@@ -372,7 +372,8 @@ end, we want to remove columns that don't have an ATR value because they are
 outside of the range. For example, with an ATR of 14, our first 14 columns
 won't have an ATR because we don't have 14 previous days of information
 
-#####This section may be incorporated into averageTrueRange.py module in future releases for flexibility with other indicator modules)
+<H5>This section may be incorporated into averageTrueRange.py module in future
+ releases for flexibility with other indicator modules</H5>
 
 ![alt text](images/periodATR.png)
 
@@ -568,8 +569,8 @@ by not repeatedly having to close and open each new spreadsheet.
 
 The **.to_excel** method also allows us to write the provided DataFrame
 object into a sheet.  However, if we want to write more than one sheet, we
-will need to provide a specific ExcelWriter object. 
-This is where the **ExcelWriter** that we imported comes into play.  
+will need to provide a specific ExcelWriter object. This is where the **ExcelWriter** that we imported comes into play. 
+ 
 Excelwriter is a **class** in Pandas that enables us to write DataFrame
 objects into sheets, and is what we will need to pass in to our .to_excel
  method later to write the multiple sheets we need. 
@@ -694,6 +695,11 @@ The full code is as follows:
      
 #### Citations
 
-Andy Hayden on Stack Overflow:
 https://stackoverflow.com/a/14225838 
-for the code to save multiple sheets to an xlsx file.
+
+Andy Hayden on Stack Overflow for the code to save multiple sheets to an xlsx
+ file.
+ 
+https://www.cnbc.com/2019/01/03/yen-surges-against-global-currencies-after-flash-crash.html
+
+CNBC article on the Yen Flash Crash
