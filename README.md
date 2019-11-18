@@ -22,7 +22,7 @@ NOTE: This project has been repurposed from the repository *ForexModules*. It is
 ### Section 6 - Parsing the IDs (In Progress)
 #### Part a - Overview
 #### Part b - Writing to .xlsx Code Walkthrough
-#### Part c - Writing to .csv Code Walkthrough
+#### Part c - Generating our Results - Code Walkthrough
 
 ### Appendix 
 #### Upcoming Plans
@@ -496,11 +496,8 @@ instances.  We now have 30 columns labeled 'close', 'ATR', etc. and our
 programs may be confused on which columns to operate.
    
 Using ExcelWriter in Pandas, we can have the option of saving this file to an
-.xlsx extension.  This separates all instances in separate worksheets.  We
-will include a method for saving .csv files and a method for .xlsx files
-, where the user can simply comment out the section they need, or in later
-implementations, the front-end interface will provide an option to export
-in either extension and our program will run the appropriate code.
+.xlsx extension.  This separates all instances in separate worksheets.  Our
+ programs will use this .xlsx method for ease of parsing data.
     
 #### Part b - Writing to .xlsx Code Walkthrough
 
@@ -639,6 +636,11 @@ save it to our desired output path.
 The full code is as follows:
 
 ![alt text](images/fullXlsxCode.png)
+
+---
+
+#### Part c - Generating our Results: Code Walkthrough
+
 
 ---
      

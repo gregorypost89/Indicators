@@ -1,10 +1,183 @@
-#TODO: Entry Indicator
-#TODO: Create an Algorithm that calculates 1x ATR
-#TODO:
-#TODO:
-#TODO:
-#TODO:
-#TODO:
-#TODO:
-#TODO:
-#TODO:
+Tracking our Results:
+
+This part involves quite a lot of code.  I will break down this section into
+smaller sections and give a general overview to make it easier to follow.
+
+---
+
+Import Statements:
+
+from openpyxl import load_workbook
+from openpyxl.styles import PatternFill as Pf
+from openpyxl.formatting.rule import CellIsRule
+
+---
+
+Formatting Block:
+
+darkRedFill = Pf(start_color='A31717', end_color='A31717', fill_type='solid')
+redFill = Pf(start_color='FF0000', end_color='FF0000', fill_type='solid')
+pinkFill = Pf(start_color='FFAFAF', end_color='FFAFAF', fill_type='solid')
+ltGreenFill = Pf(start_color='72FF76', end_color='72FF76', fill_type='solid')
+greenFill = Pf(start_color='2CD731', end_color='2CD731', fill_type='solid')
+darkGreenFill = Pf(start_color='23A627', end_color='23A627', fill_type='solid')
+
+---
+
+Load Workbook:
+
+wb = load_workbook(r'C:\GithubProjects\Indicators\output\test5.xlsx')
+ws = wb.active
+
+---
+
+Max Row:
+
+maxRow = ws.max_row
+
+---
+
+Take Profit and Stop Loss Multipliers:
+
+tpMult = 1
+slMult = 1.5
+
+---
+
+First loop: For each sheet in our worksheet
+
+for sheet in wb.worksheets:
+
+---
+
+Rate of Change:
+
+roc = sheet['G2'].value
+
+---
+
+Sign and Direction: Determines if we are entering short or long
+ROC is zero cross.
+We set direction at 0 initially
+Then check if sign is positive (ROC is positive)
+or negative (ROC is negative)
+and change direction to that corresponding long or short.
+
+sign = (roc / abs(roc))
+direction = 0
+    if sign > 0:
+        direction = 'long'
+    else:
+        direction = 'short'
+
+---
+
+Take Profit and Stop Loss Target:
+
+Example: entered at 1.0335.
+Our take profit multiplier is 1
+ROC is positive
+ATR is 0.0041
+
+The target we are trying to reach is close + ATR * 1
+If take profit multiplier is 1.5
+The target we are trying to reach is close + (ATR * 1.5)
+
+If ROC is negative, we need to go short
+If we add in our sign variable, this will change the direction we are going.
+Instead of adding the two, we add a negative value, making it subtraction
+Same effect for Stop Loss Target
+
+tpTarget = sheet['C2'].value + (sheet['D2'].value * tpMult * sign)
+slTarget = sheet['C2'].value - (sheet['D2'].value * slMult * sign)
+
+---
+
+Info Block: Gets put in our output sheets to give information
+
+sheet['H2'].value = 'Entering ' + direction + ' at '
+sheet['H3'].value = str(sheet['C2'].value)
+sheet['H5'].value = 'Take Profit at:'
+sheet['H6'].value = str(tpTarget)
+sheet['H8'].value = 'Stop Loss at'
+sheet['H9'].value = str(slTarget)
+sheet['I1'].value = 'DistanceToTP'
+sheet['J1'].value = 'DistanceToSL'
+
+---
+
+Second Loop:
+
+We need iterate over three ranges:
+
+Distance to Take Profit - iRange
+Distance to Stop Loss - jRange
+Values in Close - cRange
+
+iRange, jRange, cRange = 'I' + str(x), 'J' + str(x), 'C' + str(x)
+
+We make the variable close equal to those close values
+
+close = sheet[cRange].value
+
+If there is no value for 'close' on the sheet, continue to the next sheet
+
+    if close is None:
+        continue
+
+We add our values to the list:
+
+        if sign > 0:
+            sheet[iRange].value = float(close) - tpTarget
+            sheet[jRange].value = float(close) - slTarget
+        else:
+            sheet[iRange].value = tpTarget - float(close)
+            sheet[jRange].value = slTarget - float(close)
+
+---
+
+Formatting block (part 2)
+
+Returns formatting to see where our program hits its stop loss and where we
+hit our take profit and beyond
+
+    sheet.conditional_formatting.add('I2:' + str(iMax),
+                                     CellIsRule(operator='greaterThan',
+                                                formula=[('(H$6 - H$3) * .5')],
+                                                stopIfTrue=True,
+                                                fill=darkGreenFill))
+    sheet.conditional_formatting.add('I2:' + str(iMax),
+                                     CellIsRule(operator='between',
+                                                formula=[('(0)'),
+                                                         ('(H$6 - H$3) * .5')],
+                                                stopIfTrue=True,
+                                                fill=greenFill))
+    sheet.conditional_formatting.add('I2:' + str(iMax),
+                                     CellIsRule(operator='between',
+                                                formula=[('0'),
+                                                         ('H$3 - H$6')],
+                                                stopIfTrue=True,
+                                                fill=ltGreenFill))
+    sheet.conditional_formatting.add('J2:' + str(jMax),
+                                     CellIsRule(operator='lessThan',
+                                                formula=['0'],
+                                                stopIfTrue=True,
+                                                fill=darkRedFill))
+    sheet.conditional_formatting.add('J2:' + str(jMax),
+                                     CellIsRule(operator='between',
+                                                formula=['0',
+                                                         ('(H$3 - H$9) * .5')],
+                                                stopIfTrue=True,
+                                                fill=redFill))
+    sheet.conditional_formatting.add('J2:' + str(jMax),
+                                     CellIsRule(operator='between',
+                                                formula=[('(H$3 - H$9) * .5'),
+                                                         ('(H$3 - H$9) * 1')],
+                                                stopIfTrue=True,
+                                                fill=pinkFill))
+
+---
+
+Save Block: Saves our output
+
+wb.save(r'C:\GithubProjects\Indicators\output\xlsxOutput.xlsx')
