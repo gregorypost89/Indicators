@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93e66e65-1167-47e7-a3f8-2376e3f3f93c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/modules/resultsGenerator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/resultGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/resultGenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/summaryOutput.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/summaryOutput.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/resultGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/depreciated/resultGeneratorOld.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/resultsTrackerToCsv.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/depreciated/resultsTrackerToCsv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/resultsTrackerToXlsx.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/depreciated/resultsTrackerToXlsx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/summaryOutput.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/output/summaryOutput.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/summaryOutput2.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/output/summaryOutput2.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/xlsxOutput.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/output/xlsxOutput.xlsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,7 +31,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/modules/resultGenerator.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/modules/resultsAllinOne.py" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -50,7 +54,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.resultGenerator">
+  <component name="RunManager" selected="Python.resultsGenerator">
     <configuration name="averageTrueRange" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Indicators" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -114,7 +118,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="resultGenerator" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="resultGeneratorOld" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Indicators" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -126,7 +130,28 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/resultGenerator.py" />
+      <option name="SCRIPT_NAME" value="C:\GithubProjects\Indicators\modules\depreciated\resultGeneratorOld.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="resultsGenerator" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Indicators" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\grego\.virtualenvs\DoubleHeaderFF-pZCBb9kM\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/modules" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\GithubProjects\Indicators\modules\resultsGenerator.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -147,7 +172,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/resultsTrackerToXlsx.py" />
+      <option name="SCRIPT_NAME" value="C:\GithubProjects\Indicators\modules\depreciated\resultsTrackerToXlsx.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -181,7 +206,8 @@
       <item itemvalue="Python.rateOfChange" />
       <item itemvalue="Python.averageTrueRange" />
       <item itemvalue="Python.resultsTrackerToXlsx" />
-      <item itemvalue="Python.resultGenerator" />
+      <item itemvalue="Python.resultGeneratorOld" />
+      <item itemvalue="Python.resultsGenerator" />
       <item itemvalue="Python.xlsxTester" />
     </list>
   </component>
