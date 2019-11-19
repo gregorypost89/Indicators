@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="93e66e65-1167-47e7-a3f8-2376e3f3f93c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/resultGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/resultGenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/xlsxTester.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/depreciated/xlsxTester.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/summaryOutput.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/summaryOutput.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/xlsxOutput.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/output/xlsxOutput.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scratch.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/scratch.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

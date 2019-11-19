@@ -60,7 +60,7 @@ for sheet in wb.worksheets:
                     continue
                 else:
                     gainDict[sheet.title] = [sheet[iRange].value, direction,
-                                             result, sheet[bRange].value]
+                                             sheet[bRange].value]
             sheet[jRange].value = float(close) - slTarget
             if sheet[jRange].value < 0:
                 result = 'Stop Loss'
@@ -68,7 +68,7 @@ for sheet in wb.worksheets:
                     continue
                 else:
                     lossDict[sheet.title] = [sheet[jRange].value, direction,
-                                             result, sheet[bRange].value]
+                                             sheet[bRange].value]
 
         else:
             sheet[iRange].value = tpTarget - float(close)
@@ -78,7 +78,7 @@ for sheet in wb.worksheets:
                     continue
                 else:
                     gainDict[sheet.title] = [sheet[iRange].value, direction,
-                                             result, sheet[bRange].value]
+                                             sheet[bRange].value]
             sheet[jRange].value = slTarget - float(close)
             if sheet[jRange].value < 0:
                 result = 'Stop Loss'
@@ -86,7 +86,7 @@ for sheet in wb.worksheets:
                     continue
                 else:
                     lossDict[sheet.title] = [sheet[jRange].value, direction,
-                                             result, sheet[bRange].value]
+                                             sheet[bRange].value]
     iMax, jMax = 'I' + str(maxRow), 'J' + str(maxRow)
     sheet.conditional_formatting.add('I2:' + str(iMax),
                                      CellIsRule(operator='greaterThan',
@@ -130,9 +130,60 @@ wb.save(outputPath)
 
 gainDF = pd.DataFrame.from_dict(gainDict, orient='index')
 lossDF = pd.DataFrame.from_dict(lossDict, orient='index')
-mergedDF = gainDF.join(lossDF, lsuffix='_caller', rsuffix='_other')
+mergedDF = gainDF.join(lossDF, lsuffix='a', rsuffix='b').rename(
+    columns={'0a': 'tpGain', '1a': 'tpDirection', '2a': 'tpDate',
+             '0b': 'slLoss', '1b': 'slDirection', '2b': 'slDate'})
 
-mergedDF.to_csv(r'C:\GithubProjects\Indicators\output\summaryOutput.csv')
-print(mergedDF)
+mergedDF.to_excel(r'C:\GithubProjects\Indicators\output\summaryOutput.xlsx')
+wb2 = load_workbook(r'C:\GithubProjects\Indicators\output\summaryOutput.xlsx')
+ws2 = wb2.active
+ws2.column_dimensions['I'].width, ws2.column_dimensions['K'].width = 14, 14
+maxRow2 = ws2.max_row
+profits, losses, total = 0, 0, 0
+for y in range(2, maxRow2+1):
+    bRange, cRange, dRange, eRange, fRange, gRange = 'B' + str(y), 'C' + str(y), \
+                                                     'D' + str(y), 'E' + str(y), \
+                                                     'F' + str(y), 'G' + str(y)
+    if ws2[dRange].value is None:
+        ws2[dRange].value = 0
+    if ws2[gRange].value is None:
+        ws2[gRange].value = 0
+    tpDate, slDate = int(str(ws2[dRange].value).replace('.', '')), \
+                     int(str(ws2[gRange].value).replace('.', ''))
+    if tpDate < slDate or slDate is 0:
+        ws2[bRange].fill = Pf("solid", fgColor="2f7a30") #green
+        profits += 1
+    if tpDate > slDate and slDate is not 0:
+        ws2[eRange].fill = Pf("solid", fgColor="a8324a") #red
+        losses += 1
+    total += 1
+
+print(profits)
+print(losses)
+print(total)
+ws2['I1'].value = 'Take Profit'
+ws2['I2'].value = 'Total Hits'
+ws2['I3'].value = 'Total Entries'
+ws2['I4'].value = 'Profit Rate'
+ws2['J2'].value = profits
+ws2['J3'].value = total
+ws2['J4'].value = (profits/total) * 100
+ws2['K1'].value = 'Stop Loss'
+ws2['K2'].value = 'Total Hits'
+ws2['K3'].value = 'Total Entries'
+ws2['K4'].value = 'Loss Rate'
+ws2['L2'].value = losses
+ws2['L3'].value = total
+ws2['L4'].value = (losses/total) * 100
+wb2.save(r'C:\GithubProjects\Indicators\output\summaryOutput2.xlsx')
+
+    # sheet.conditional_formatting.add('B' + str(y)), CellIsRule(
+    #                                             operator='greaterThan',
+    #                                             formula=[('0')],
+    #                                             stopIfTrue=True,
+    #                                             fill=darkGreenFill))
+
+#ws2.column_dimensions.width = 14
+
 #my input: C:\GithubProjects\Indicators\output\test5.xlsx
 #my output: C:\GithubProjects\Indicators\output\xlsxOutput.xlsx'
