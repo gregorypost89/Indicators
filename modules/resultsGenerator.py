@@ -1,14 +1,47 @@
+import pandas as pd
+from pandas import ExcelWriter
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill as Pf
 from openpyxl.formatting.rule import CellIsRule
-import pandas as pd
 
-###############################################################################
-# Put the paths of the input and output below. Do not replace r or quotes ''. #
-inputPath = r'C:\GithubProjects\Indicators\output\test5.xlsx'
-outputPath = r'C:\GithubProjects\Indicators\output\xlsxOutput.xlsx'
-###############################################################################
+###################################################
+# Define the maximum amount of entries to inspect #
+maxEntries = 100
 
+# Put the paths of the data file below. Do not replace r or quotes ''. #
+inputPath = r'C:\GithubProjects\Indicators\output\test.csv'
+
+bufferPath = r'C:\GithubProjects\Indicators\output\temp.xlsx'
+
+resultPath = r'C:\GithubProjects\Indicators\output\xlsxOutput.xlsx'
+
+summaryPath = r'C:\GithubProjects\Indicators\output\summaryOutput2.xlsx'
+###################################################
+
+df = pd.read_csv(inputPath,
+                 usecols=['date', 'close', 'ATR', 'roc', 'pipGain', 'id'],
+                 index_col=None)
+
+maxId = df['id'].loc[len(df['id']) - 1]
+
+if maxId - maxEntries < 0:
+    maxEntries = maxId
+
+dataList = []
+
+for i in range((maxId - maxEntries), maxId):
+    dfNew = df.where(df['id'] >= i)
+    dataList.append(dfNew)
+
+
+def save_xls(list_dfs, xls_path):
+    with ExcelWriter(xls_path) as writer:
+        for n, dfl in enumerate(list_dfs, 1):
+            dfl.dropna(axis=0, how='all').to_excel(writer, 'sheet%s' % n)
+        writer.save()
+
+
+save_xls(dataList, bufferPath)
 
 darkRedFill = Pf(start_color='FF0000', end_color='FF0000', fill_type='solid')
 redFill = Pf(start_color='FF66A4', end_color='FF66A4', fill_type='solid')
@@ -17,7 +50,7 @@ ltGreenFill = Pf(start_color='C3FFDF', end_color='C3FFDF', fill_type='solid')
 greenFill = Pf(start_color='73FFB4', end_color='73FFB4', fill_type='solid')
 darkGreenFill = Pf(start_color='00B956', end_color='00B956', fill_type='solid')
 
-wb = load_workbook(inputPath)
+wb = load_workbook(bufferPath)
 ws = wb.active
 
 maxRow = ws.max_row
@@ -123,10 +156,10 @@ for sheet in wb.worksheets:
                                                 stopIfTrue=True,
                                                 fill=pinkFill))
 
-wb.create_sheet("summary", 0)
-ws = wb.active
-ws.sheet_properties.tabColor = "1072BA"
-wb.save(outputPath)
+# wb.create_sheet("summary", 0)
+# ws = wb.active
+# ws.sheet_properties.tabColor = "1072BA"
+wb.save(resultPath)
 
 gainDF = pd.DataFrame.from_dict(gainDict, orient='index')
 lossDF = pd.DataFrame.from_dict(lossDict, orient='index')
@@ -140,6 +173,8 @@ ws2 = wb2.active
 ws2.column_dimensions['I'].width, ws2.column_dimensions['K'].width = 14, 14
 maxRow2 = ws2.max_row
 profits, losses, total = 0, 0, 0
+totalProfit, totalLoss = 0, 0
+
 for y in range(2, maxRow2+1):
     bRange, cRange, dRange, eRange, fRange, gRange = 'B' + str(y), 'C' + str(y), \
                                                      'D' + str(y), 'E' + str(y), \
@@ -152,38 +187,47 @@ for y in range(2, maxRow2+1):
                      int(str(ws2[gRange].value).replace('.', ''))
     if tpDate < slDate or slDate is 0:
         ws2[bRange].fill = Pf("solid", fgColor="2f7a30") #green
+        totalProfit += ws2[bRange].value
         profits += 1
     if tpDate > slDate and slDate is not 0:
         ws2[eRange].fill = Pf("solid", fgColor="a8324a") #red
+        totalLoss += ws2[eRange].value
         losses += 1
     total += 1
 
+totalProfit, totalLoss = round(totalProfit, 5), round(totalLoss, 5)
+averageProfit, averageLoss = round(totalProfit/profits, 5), \
+                             round(totalLoss/losses, 5)
 print(profits)
 print(losses)
 print(total)
+print(totalProfit)
+print(totalLoss)
+print(averageProfit)
+print(averageLoss)
 ws2['I1'].value = 'Take Profit'
 ws2['I2'].value = 'Total Hits'
 ws2['I3'].value = 'Total Entries'
 ws2['I4'].value = 'Profit Rate'
+ws2['I6'].value = 'Total Profit'
+ws2['I7'].value = 'Average Profit'
 ws2['J2'].value = profits
 ws2['J3'].value = total
 ws2['J4'].value = (profits/total) * 100
+ws2['J6'].value = totalProfit
+ws2['J7'].value = averageProfit
 ws2['K1'].value = 'Stop Loss'
 ws2['K2'].value = 'Total Hits'
 ws2['K3'].value = 'Total Entries'
 ws2['K4'].value = 'Loss Rate'
+ws2['K6'].value = 'Total Loss'
+ws2['K7'].value = 'Average Loss'
 ws2['L2'].value = losses
 ws2['L3'].value = total
 ws2['L4'].value = (losses/total) * 100
-wb2.save(r'C:\GithubProjects\Indicators\output\summaryOutput2.xlsx')
-
-    # sheet.conditional_formatting.add('B' + str(y)), CellIsRule(
-    #                                             operator='greaterThan',
-    #                                             formula=[('0')],
-    #                                             stopIfTrue=True,
-    #                                             fill=darkGreenFill))
-
-#ws2.column_dimensions.width = 14
+ws2['L6'].value = totalLoss
+ws2['L7'].value = averageLoss
+wb2.save(summaryPath)
 
 #my input: C:\GithubProjects\Indicators\output\test5.xlsx
 #my output: C:\GithubProjects\Indicators\output\xlsxOutput.xlsx'
