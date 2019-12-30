@@ -2,21 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93e66e65-1167-47e7-a3f8-2376e3f3f93c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interface/formulas.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interface/interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/grego.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/grego.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/depreciated/dataManipulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/deprecated/dataManipulation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/depreciated/dictSplit.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/deprecated/dictSplit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/depreciated/graphExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/deprecated/graphExample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/depreciated/indicatorShortAndLong.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/deprecated/indicatorShortAndLong.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/depreciated/indicatorsToCSV.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/deprecated/indicatorsToCSV.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/depreciated/rateOfChange.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/deprecated/rateOfChange.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/depreciated/resultGeneratorOld.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/deprecated/resultGeneratorOld.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/depreciated/resultsTrackerToCsv.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/deprecated/resultsTrackerToCsv.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/depreciated/resultsTrackerToXlsx.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/deprecated/resultsTrackerToXlsx.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/depreciated/seabornDistPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/deprecated/seabornDistPlot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/depreciated/simpleMovingAverage.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/deprecated/simpleMovingAverage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/depreciated/xlsxTester.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/deprecated/xlsxTester.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/chaikinMoneyFlow.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/data/AUDNZD1440.csv" beforeDir="false" afterPath="$PROJECT_DIR$/modules/AUDNZD1440.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scratch.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/modules/deprecated/scratch.gitignore" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,33 +28,26 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1TM4LmAZW426JaFymCHBYLebBCF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/modules/resultsAllinOne.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/modules/deprecated/relativeVigorIndex.py" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\GithubProjects\Indicators\modules\depreciated" />
-      <recent name="C:\GithubProjects\Indicators\modules\autogui" />
-      <recent name="C:\GithubProjects\Indicators\images" />
+      <recent name="C:\GithubProjects\Indicators\modules" />
+      <recent name="C:\GithubProjects\Indicators\modules\deprecated" />
+      <recent name="C:\GithubProjects\Indicators\interface" />
+      <recent name="C:\GithubProjects\Indicators\interface\data" />
       <recent name="C:\GithubProjects\Indicators\modules\data" />
-      <recent name="C:\GithubProjects\Indicators\data" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python.resultsGenerator">
+  <component name="RunManager" selected="Python.relativeVigorIndex">
     <configuration name="averageTrueRange" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Indicators" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -115,6 +103,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="C:\GithubProjects\Indicators\modules\rateOfChange.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="relativeVigorIndex" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Indicators" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\grego\.virtualenvs\DoubleHeaderFF-pZCBb9kM\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/modules/deprecated" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\GithubProjects\Indicators\modules\relativeVigorIndex.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -209,12 +218,25 @@
     </configuration>
     <list>
       <item itemvalue="Python.rateOfChange" />
+      <item itemvalue="Python.relativeVigorIndex" />
       <item itemvalue="Python.averageTrueRange" />
       <item itemvalue="Python.resultsTrackerToXlsx" />
       <item itemvalue="Python.resultGeneratorOld" />
       <item itemvalue="Python.resultsGenerator" />
       <item itemvalue="Python.xlsxTester" />
     </list>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -241,5 +263,39 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="277" y="96" key="#Inspections" timestamp="1577564356218">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="277" y="96" key="#Inspections/0.0.1368.872@0.0.1368.872" timestamp="1577564356218" />
+    <state x="140" y="92" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577729757212">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="140" y="92" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1368.872@0.0.1368.872" timestamp="1577729757212" />
+    <state x="466" y="193" key="FileChooserDialogImpl" timestamp="1577729755557">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="466" y="193" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1577729755557" />
+    <state width="1348" height="227" key="GridCell.Tab.0.bottom" timestamp="1577746435791">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state width="1348" height="227" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1577746435791" />
+    <state width="1348" height="227" key="GridCell.Tab.0.center" timestamp="1577746435790">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state width="1348" height="227" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1577746435790" />
+    <state width="1348" height="227" key="GridCell.Tab.0.left" timestamp="1577746435790">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state width="1348" height="227" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1577746435790" />
+    <state width="1348" height="227" key="GridCell.Tab.0.right" timestamp="1577746435791">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state width="1348" height="227" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1577746435791" />
+    <state x="347" y="184" width="672" height="678" key="search.everywhere.popup" timestamp="1577732843978">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="347" y="184" width="672" height="678" key="search.everywhere.popup/0.0.1368.872@0.0.1368.872" timestamp="1577732843978" />
   </component>
 </project>
