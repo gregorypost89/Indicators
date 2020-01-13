@@ -45,20 +45,16 @@ for y in df['denominator_rolling']:
     denomList.append(y)
 resultList = [x/y for x, y in zip(numList, denomList)]
 df['rvi'] = pd.DataFrame(resultList)
-print(df)
 df['rvi_i'] = df['rvi'].shift(periods=1)
 df['rvi_j'] = df['rvi'].shift(periods=2)
 df['rvi_k'] = df['rvi'].shift(periods=3)
 df['signal_line'] = (df['rvi'] + (2 * df['rvi_i']) + (2 * df['rvi_j']) + df[
     'rvi_k']) / 6
 df['signal_line_a'] = df['signal_line'].shift(periods=1)
+df['direction'] = df['signal_line'].lt(df['rvi'])
 
-df['exit'] = df['rvi'].apply(lambda z: 'Exit' if (df['rvi_i'] - df[
-    'signal_line_a'] < 0 and df['rvi'] - df['signal_line'] > 0) or (
-                                                             df['rvi_i'] - df[
-                                                         'signal_line_a'] > 0 and
-                                                             df['rvi'] - df[
-                                                                 'signal_line'] < 0) else '')
+print(df)
+df.to_csv(r'C:\GithubProjects\Indicators\data\output.csv')
 
 
 def relative_vigor_index(df, period):

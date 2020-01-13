@@ -1,11 +1,12 @@
 # Forex Data Modules
 
-NOTE: This project has been repurposed from the repository *ForexModules*. It is
- currently under construction and certain sections may be unfinished.  This
-  README will be updated for clarity as modules are posted and updated.
+Summary : This project is focused on strategy testing algorithms based on indicators for the Foreign Exchange Market.  This program generates spreadsheets and charts for the user to compare strategies and determine which algorithm generates the most winning trades across every major currency pair.
+
+> NOTE: This project has been repurposed from the repository *ForexModules*. It is currently under construction and certain sections may be unfinished.  This README will be updated for clarity as modules are posted and updated.
   
 ## Index:
 
+### Quickstart
 ### Section 1 - Introduction
 ### Section 2 - Trading Strategy
 ### Section 3 - Backtesting
@@ -29,6 +30,15 @@ NOTE: This project has been repurposed from the repository *ForexModules*. It is
 #### Citations
 
 ---
+
+
+## Quickstart
+
+Download the entire **interface** directory.  This contains two python modules: interface.py and formulas.py, as well as a data folder that contains all major currency pairs for USD
+
+Run interface.py.  The necessary packages are displayed in requirements.txt.
+
+The program should display a command line interface that will guide you through the remainder of the process.
 
 ## Section 1 - Introduction
 

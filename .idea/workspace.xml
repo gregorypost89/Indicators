@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93e66e65-1167-47e7-a3f8-2376e3f3f93c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interface/formulas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interface/interface.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/grego.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/grego.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/chaikinMoneyFlow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/data/AUDNZD1440.csv" beforeDir="false" afterPath="$PROJECT_DIR$/modules/AUDNZD1440.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scratch.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/modules/deprecated/scratch.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface/formulas.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/formulas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface/interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/relativeVigorIndex.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/relativeVigorIndex.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +31,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/modules/deprecated/relativeVigorIndex.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../WordAssociation" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -273,26 +268,26 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="140" y="92" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1368.872@0.0.1368.872" timestamp="1577729757212" />
-    <state x="466" y="193" key="FileChooserDialogImpl" timestamp="1577729755557">
+    <state x="466" y="193" key="FileChooserDialogImpl" timestamp="1578005151119">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="466" y="193" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1577729755557" />
-    <state width="1348" height="227" key="GridCell.Tab.0.bottom" timestamp="1577746435791">
+    <state x="466" y="193" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1578005151119" />
+    <state width="1348" height="227" key="GridCell.Tab.0.bottom" timestamp="1578171411111">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1348" height="227" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1577746435791" />
-    <state width="1348" height="227" key="GridCell.Tab.0.center" timestamp="1577746435790">
+    <state width="1348" height="227" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1578171411111" />
+    <state width="1348" height="227" key="GridCell.Tab.0.center" timestamp="1578171411110">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1348" height="227" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1577746435790" />
-    <state width="1348" height="227" key="GridCell.Tab.0.left" timestamp="1577746435790">
+    <state width="1348" height="227" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1578171411110" />
+    <state width="1348" height="227" key="GridCell.Tab.0.left" timestamp="1578171411110">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1348" height="227" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1577746435790" />
-    <state width="1348" height="227" key="GridCell.Tab.0.right" timestamp="1577746435791">
+    <state width="1348" height="227" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1578171411110" />
+    <state width="1348" height="227" key="GridCell.Tab.0.right" timestamp="1578171411111">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="1348" height="227" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1577746435791" />
+    <state width="1348" height="227" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1578171411111" />
     <state x="347" y="184" width="672" height="678" key="search.everywhere.popup" timestamp="1577732843978">
       <screen x="0" y="0" width="1368" height="872" />
     </state>

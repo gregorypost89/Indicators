@@ -1,1 +1,15 @@
+# Byte-compiled / optimized / DLL files
+/interface/__pycache__
+
+# Distribution/Packaging
+.idea
+.vscode
+
+# Directories for module testing
+/output
+/data
 /modules/deprecated/
+
+# Environments
+/indicatorEnv
+/virtualenv/
